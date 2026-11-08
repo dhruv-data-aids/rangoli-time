@@ -1,6 +1,6 @@
 /** Touch rules: ignore palms / multi-touch taps, block page pinch-zoom and double-tap zoom. */
 const touches = new Set<number>();
-let lastMulti = 0;
+let lastMulti = -Infinity;
 
 export function installGuards(): void {
   const add = (e: PointerEvent) => {

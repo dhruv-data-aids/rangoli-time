@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import { VitePWA } from 'vite-plugin-pwa';
 
 // GitHub Pages serves the project at /rangoli-time/. Override with VITE_BASE=/ for a root deploy.
 const base = process.env.VITE_BASE ?? '/rangoli-time/';
 
-export default defineConfig(({ command }) => ({
-  base: command === 'build' ? base : '/',
+export default defineConfig({
+  base,
   build: { target: 'es2020' },
   plugins: [
     VitePWA({
@@ -35,4 +35,4 @@ export default defineConfig(({ command }) => ({
     }),
   ],
   test: { include: ['tests/**/*.test.ts'] },
-}));
+});
