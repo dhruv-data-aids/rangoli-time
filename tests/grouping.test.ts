@@ -85,7 +85,7 @@ describe('audited designs', () => {
   it('prints the audit table for all designs', () => {
     const lines = DESIGNS.map((d) => `${d.id}: ` + groupSummary(flatten(d.layers())).map((g) => `${g.g}×${g.count}`).join('  '));
     expect(lines).toHaveLength(14);
-    if (process.env.AUDIT) console.log('\n' + lines.join('\n'));
+    if (import.meta.env.AUDIT) console.log('\n' + lines.join('\n'));
   });
 });
 

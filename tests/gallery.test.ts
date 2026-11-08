@@ -3,12 +3,13 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { _wipeAll, deleteItem, exportGallery, getItem, importGallery, listItems, newId, parseItem, recipeOf, saveItem, type GalleryItem } from '../src/storage/gallery';
 import { loadWip, saveWip } from '../src/storage/db';
 import { defaultState } from '../src/state/store';
+import type { RingCfg } from '../src/designs/make-pieces';
 
 const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200"><path d="M0 0"/></svg>';
 const colored = (over: Partial<GalleryItem> = {}): GalleryItem =>
   ({ id: newId(), createdAt: Date.now(), mode: 'colored', designName: 'Lotus', svg, state: { designId: 'lotus', surprise: null, fills: { 'p-0': '#E3262F' }, stk: [{ t: 'diya', x: 10, y: 20, rot: 0 }] }, ...over }) as GalleryItem;
 const made = (over: Partial<GalleryItem> = {}): GalleryItem => {
-  const rings = [{ m: 'bloom', c: '#FFD12E', c2: '#E3262F', o: { 'r0a-1': '#112233' } }, { m: 'petals', c: '#FF9B1F', c2: '#EC3392', o: {} }, null, { m: 'dots', c: '#fff', c2: '#000', o: {} }];
+  const rings: (RingCfg | null)[] = [{ m: 'bloom', c: '#FFD12E', c2: '#E3262F', o: { 'r0a-1': '#112233' } }, { m: 'petals', c: '#FF9B1F', c2: '#EC3392', o: {} }, null, { m: 'dots', c: '#fff', c2: '#000', o: {} }];
   return { id: newId(), createdAt: Date.now(), mode: 'made', recipe: recipeOf(rings), svg, state: { rings, stk: [] }, ...over } as GalleryItem;
 };
 
